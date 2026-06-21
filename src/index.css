@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+/*
+ * Palette — a focused card-counting practice rig with a casino-table soul.
+ * Deep felt green with a vignette, brass/gold for money actions, chalk text,
+ * and a soft teal for count readouts. Action colors are distinct but all sit
+ * comfortably on the felt.
+ */
+@theme {
+  --color-felt: #0a2a1e;
+  --color-felt-deep: #061610;
+  --color-felt-panel: #0e3327;
+  --color-felt-raised: #134034;
+  --color-felt-line: #1c4a3a;
+  --color-brass: #d9a441;
+  --color-brass-bright: #e8b85a;
+  --color-chalk: #e8efe9;
+  --color-chalk-dim: #9fb3aa;
+  --color-teal-soft: #5fb0a0;
+
+  --color-act-hit: #1f8a6d;
+  --color-act-stand: #586b63;
+  --color-act-split: #7c6cc4;
+  --color-act-surrender: #b5685e;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-chalk);
+  /* Classic casino felt: a lit medium-green center fading to darker rails. */
+  background:
+    radial-gradient(
+      ellipse 130% 100% at 50% 28%,
+      #1f8a55 0%,
+      #156b41 48%,
+      #0c4228 100%
+    )
+    fixed;
+}
+
+/* Cards slide/fade in as they are dealt. */
+@keyframes deal-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.card-deal {
+  animation: deal-in 260ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-deal {
+    animation: none;
+  }
+}
